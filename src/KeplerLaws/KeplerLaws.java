@@ -10,7 +10,9 @@ package KeplerLaws;
  * @author minakim
  */
 public class KeplerLaws extends javax.swing.JApplet {
-
+    int semimajorAxis;
+    double eccentricity;
+    
     /**
      * Initializes the applet KeplerLaws
      */
@@ -61,45 +63,432 @@ public class KeplerLaws extends javax.swing.JApplet {
     private void initComponents() {
 
         jInternalFrame1 = new javax.swing.JInternalFrame();
+        visualizingPanel = new javax.swing.JPanel();
+        KeplersLawsPanel = new javax.swing.JTabbedPane();
+        firstLaw = new javax.swing.JPanel();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jCheckBox2 = new javax.swing.JCheckBox();
+        jCheckBox3 = new javax.swing.JCheckBox();
+        jCheckBox4 = new javax.swing.JCheckBox();
+        jCheckBox5 = new javax.swing.JCheckBox();
+        jLabel1 = new javax.swing.JLabel();
+        jLayeredPane1 = new javax.swing.JLayeredPane();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        secondLaw = new javax.swing.JPanel();
+        thirdLaw = new javax.swing.JPanel();
+        controlParameterPanel = new javax.swing.JPanel();
+        controlPlanetLabel = new javax.swing.JLabel();
+        controlPlanet = new javax.swing.JComboBox();
+        semimajorAxisLabel = new javax.swing.JLabel();
+        semimajorAxisTextField = new javax.swing.JTextField();
+        semimajorAxisUnitLabel = new javax.swing.JLabel();
+        semimajorAxisSlider = new javax.swing.JSlider();
+        eccentricityLabel = new javax.swing.JLabel();
+        eccentricityTextField = new javax.swing.JTextField();
+        eccentricitySlider = new javax.swing.JSlider();
+        jToggleButton1 = new javax.swing.JToggleButton();
 
         setPreferredSize(new java.awt.Dimension(800, 600));
 
-        jInternalFrame1.setTitle("Kepler's Laws");
+        jInternalFrame1.setTitle("케플러의 법칙");
         jInternalFrame1.setMaximumSize(new java.awt.Dimension(800, 600));
         jInternalFrame1.setMinimumSize(new java.awt.Dimension(800, 600));
         jInternalFrame1.setName("Kepler's law"); // NOI18N
         jInternalFrame1.setPreferredSize(new java.awt.Dimension(800, 600));
         jInternalFrame1.setVisible(true);
 
-        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
-        jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
-        jInternalFrame1Layout.setHorizontalGroup(
-            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 789, Short.MAX_VALUE)
+        visualizingPanel.setBackground(new java.awt.Color(24, 13, 1));
+        visualizingPanel.setPreferredSize(new java.awt.Dimension(789, 300));
+
+        javax.swing.GroupLayout visualizingPanelLayout = new javax.swing.GroupLayout(visualizingPanel);
+        visualizingPanel.setLayout(visualizingPanelLayout);
+        visualizingPanelLayout.setHorizontalGroup(
+            visualizingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
-        jInternalFrame1Layout.setVerticalGroup(
-            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 571, Short.MAX_VALUE)
+        visualizingPanelLayout.setVerticalGroup(
+            visualizingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 296, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-    }// </editor-fold>//GEN-END:initComponents
+        firstLaw.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jCheckBox1.setText("초점 보기");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
+
+        jCheckBox2.setText("중심 보기");
+
+        jCheckBox3.setText("단반경 보기");
+
+        jCheckBox4.setText("장반경 보기");
+
+        jCheckBox5.setText("초점으로부터의 거리");
+
+        jLabel1.setText("모든 행성은 태양을 초점으로 하는 타원 궤도 운동을 한다.");
+
+        jLayeredPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel2.setFont(new java.awt.Font("Ubuntu", 2, 24)); // NOI18N
+        jLabel2.setText("r_1   +  r_2   =  2 \\times a");
+
+        jLabel3.setText("+");
+
+        jTextField1.setText("jTextField1");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        jTextField2.setText("jTextField2");
+
+        jTextField3.setText("jTextField3");
+
+        jLabel4.setText("=\\");
+
+            javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
+            jLayeredPane1.setLayout(jLayeredPane1Layout);
+            jLayeredPane1Layout.setHorizontalGroup(
+                jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel3)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel4)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                            .addGap(31, 31, 31)
+                            .addComponent(jLabel2)
+                            .addGap(0, 0, Short.MAX_VALUE)))
+                    .addContainerGap())
+            );
+            jLayeredPane1Layout.setVerticalGroup(
+                jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addGap(47, 47, 47)
+                    .addComponent(jLabel2)
+                    .addGap(23, 23, 23)
+                    .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            );
+            jLayeredPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+            jLayeredPane1.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+            jLayeredPane1.setLayer(jTextField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+            jLayeredPane1.setLayer(jTextField2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+            jLayeredPane1.setLayer(jTextField3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+            jLayeredPane1.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+            javax.swing.GroupLayout firstLawLayout = new javax.swing.GroupLayout(firstLaw);
+            firstLaw.setLayout(firstLawLayout);
+            firstLawLayout.setHorizontalGroup(
+                firstLawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(firstLawLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(firstLawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel1)
+                        .addGroup(firstLawLayout.createSequentialGroup()
+                            .addGroup(firstLawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jCheckBox5)
+                                .addComponent(jCheckBox1)
+                                .addComponent(jCheckBox2)
+                                .addComponent(jCheckBox3)
+                                .addComponent(jCheckBox4))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jLayeredPane1)))
+                    .addContainerGap())
+            );
+            firstLawLayout.setVerticalGroup(
+                firstLawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(firstLawLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jLabel1)
+                    .addGap(39, 39, 39)
+                    .addGroup(firstLawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(firstLawLayout.createSequentialGroup()
+                            .addComponent(jCheckBox1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jCheckBox2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jCheckBox3)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jCheckBox4)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jCheckBox5))
+                        .addComponent(jLayeredPane1))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            );
+
+            KeplersLawsPanel.addTab("케플러 제 1법칙", firstLaw);
+
+            secondLaw.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+            javax.swing.GroupLayout secondLawLayout = new javax.swing.GroupLayout(secondLaw);
+            secondLaw.setLayout(secondLawLayout);
+            secondLawLayout.setHorizontalGroup(
+                secondLawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 548, Short.MAX_VALUE)
+            );
+            secondLawLayout.setVerticalGroup(
+                secondLawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 248, Short.MAX_VALUE)
+            );
+
+            KeplersLawsPanel.addTab("케플러 제 2법칙", secondLaw);
+
+            thirdLaw.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+            javax.swing.GroupLayout thirdLawLayout = new javax.swing.GroupLayout(thirdLaw);
+            thirdLaw.setLayout(thirdLawLayout);
+            thirdLawLayout.setHorizontalGroup(
+                thirdLawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 548, Short.MAX_VALUE)
+            );
+            thirdLawLayout.setVerticalGroup(
+                thirdLawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 248, Short.MAX_VALUE)
+            );
+
+            KeplersLawsPanel.addTab("케플러 제 3법칙", thirdLaw);
+
+            controlPlanetLabel.setText("행성 선택");
+
+            controlPlanet.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "수성", "금성", "지구", "화성", "목성", "토성", "천왕성", "해왕성", "명왕성" }));
+
+            semimajorAxisLabel.setText("장반경");
+
+            semimajorAxisTextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+            semimajorAxisTextField.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    semimajorAxisTextFieldActionPerformed(evt);
+                }
+            });
+
+            semimajorAxisUnitLabel.setText("(AU)");
+
+            semimajorAxisSlider.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
+            semimajorAxisSlider.setMaximum(50);
+            semimajorAxisSlider.setValue(25);
+            semimajorAxisSlider.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+            semimajorAxisSlider.setDoubleBuffered(true);
+            semimajorAxisSlider.setPreferredSize(new java.awt.Dimension(200, 50));
+            semimajorAxisSlider.addChangeListener(new javax.swing.event.ChangeListener() {
+                public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                    semimajorAxisSliderStateChanged(evt);
+                }
+            });
+
+            eccentricityLabel.setText("이심률");
+
+            eccentricityTextField.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    eccentricityTextFieldActionPerformed(evt);
+                }
+            });
+
+            eccentricitySlider.addChangeListener(new javax.swing.event.ChangeListener() {
+                public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                    eccentricitySliderStateChanged(evt);
+                }
+            });
+
+            jToggleButton1.setBackground(java.awt.Color.gray);
+            jToggleButton1.setText("시작");
+            jToggleButton1.setToolTipText("");
+            jToggleButton1.setActionCommand("정지");
+            jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jToggleButton1ActionPerformed(evt);
+                }
+            });
+
+            javax.swing.GroupLayout controlParameterPanelLayout = new javax.swing.GroupLayout(controlParameterPanel);
+            controlParameterPanel.setLayout(controlParameterPanelLayout);
+            controlParameterPanelLayout.setHorizontalGroup(
+                controlParameterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(controlParameterPanelLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(controlParameterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(controlParameterPanelLayout.createSequentialGroup()
+                            .addComponent(controlPlanetLabel)
+                            .addGap(29, 29, 29)
+                            .addComponent(controlPlanet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(controlParameterPanelLayout.createSequentialGroup()
+                            .addGap(44, 44, 44)
+                            .addGroup(controlParameterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(controlParameterPanelLayout.createSequentialGroup()
+                                    .addGroup(controlParameterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(semimajorAxisLabel)
+                                        .addComponent(eccentricityLabel))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(controlParameterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(controlParameterPanelLayout.createSequentialGroup()
+                                            .addComponent(semimajorAxisTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(semimajorAxisUnitLabel))
+                                        .addGroup(controlParameterPanelLayout.createSequentialGroup()
+                                            .addComponent(eccentricityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(0, 0, Short.MAX_VALUE))))
+                                .addComponent(eccentricitySlider, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                .addComponent(semimajorAxisSlider, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
+                    .addContainerGap())
+                .addGroup(controlParameterPanelLayout.createSequentialGroup()
+                    .addGap(41, 41, 41)
+                    .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            );
+            controlParameterPanelLayout.setVerticalGroup(
+                controlParameterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, controlParameterPanelLayout.createSequentialGroup()
+                    .addContainerGap(58, Short.MAX_VALUE)
+                    .addGroup(controlParameterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(controlPlanetLabel)
+                        .addComponent(controlPlanet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(4, 4, 4)
+                    .addGroup(controlParameterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(semimajorAxisTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(semimajorAxisLabel)
+                        .addComponent(semimajorAxisUnitLabel))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(semimajorAxisSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(controlParameterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(eccentricityLabel)
+                        .addComponent(eccentricityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(eccentricitySlider, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(6, 6, 6))
+            );
+
+            javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
+            jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
+            jInternalFrame1Layout.setHorizontalGroup(
+                jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                            .addGap(0, 0, Short.MAX_VALUE)
+                            .addComponent(controlParameterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(KeplersLawsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(visualizingPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE))
+                    .addContainerGap())
+            );
+            jInternalFrame1Layout.setVerticalGroup(
+                jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(visualizingPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(controlParameterPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(KeplersLawsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addContainerGap())
+            );
+
+            javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+            getContentPane().setLayout(layout);
+            layout.setHorizontalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE))
+            );
+            layout.setVerticalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE))
+            );
+        }// </editor-fold>//GEN-END:initComponents
+
+    private void semimajorAxisTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_semimajorAxisTextFieldActionPerformed
+        // TODO add your handling code here:
+        int value = Integer.parseInt(semimajorAxisTextField.getText());
+    }//GEN-LAST:event_semimajorAxisTextFieldActionPerformed
+
+    private void semimajorAxisSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_semimajorAxisSliderStateChanged
+        // TODO add your handling code here:
+        semimajorAxisTextField.setText(""+semimajorAxisSlider.getValue());
+        semimajorAxis= semimajorAxisSlider.getValue();
+    }//GEN-LAST:event_semimajorAxisSliderStateChanged
+
+    private void eccentricityTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eccentricityTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_eccentricityTextFieldActionPerformed
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void eccentricitySliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_eccentricitySliderStateChanged
+        // TODO add your handling code here:
+        eccentricityTextField.setText(""+(eccentricitySlider.getValue())/100.);
+        eccentricity= (eccentricitySlider.getValue())/100.;
+    }//GEN-LAST:event_eccentricitySliderStateChanged
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTabbedPane KeplersLawsPanel;
+    private javax.swing.JPanel controlParameterPanel;
+    private javax.swing.JComboBox controlPlanet;
+    private javax.swing.JLabel controlPlanetLabel;
+    private javax.swing.JLabel eccentricityLabel;
+    private javax.swing.JSlider eccentricitySlider;
+    private javax.swing.JTextField eccentricityTextField;
+    private javax.swing.JPanel firstLaw;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox jCheckBox2;
+    private javax.swing.JCheckBox jCheckBox3;
+    private javax.swing.JCheckBox jCheckBox4;
+    private javax.swing.JCheckBox jCheckBox5;
     private javax.swing.JInternalFrame jInternalFrame1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JPanel secondLaw;
+    private javax.swing.JLabel semimajorAxisLabel;
+    private javax.swing.JSlider semimajorAxisSlider;
+    private javax.swing.JTextField semimajorAxisTextField;
+    private javax.swing.JLabel semimajorAxisUnitLabel;
+    private javax.swing.JPanel thirdLaw;
+    private javax.swing.JPanel visualizingPanel;
     // End of variables declaration//GEN-END:variables
 }
