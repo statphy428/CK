@@ -492,3 +492,21 @@ public class KeplerLaws extends javax.swing.JApplet {
     private javax.swing.JPanel visualizingPanel;
     // End of variables declaration//GEN-END:variables
 }
+
+class KeplerDynamics{
+    //Equation of motion
+    phi += dt/r/r;                        // Angular momentum conservation
+    if (phi > Math.PI) phi -= 2*Math.PI;  // -pi < phi <= pi
+    r = 1/(ecc*Math.cos(phi-phi0)+k);     // Orbit equation
+    putxy();   
+    //constraint
+    ecc = Math.sqrt(1.+2.*E);     	// Eccentricity
+    k = (attractive) ? 1. : -1.;     	// Force constant
+    while (phi0 >    Math.PI) phi0 -= 2*Math.PI;  // -pi < phi0 <= pi
+    //From polar to Cartesian coordinates
+    public void putxy() {
+        x = r*Math.cos(phi);
+        y = r*Math.sin(phi);
+    }
+    
+}
