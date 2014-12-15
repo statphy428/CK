@@ -159,6 +159,7 @@ public class KeplerLaws extends javax.swing.JApplet {
 
         jInternalFrame1 = new javax.swing.JInternalFrame();
         visualizingPanel = new displayPanel();
+        GraphPanel = new javax.swing.JPanel();
         controlParameterPanel = new javax.swing.JPanel();
         controlParameterLabel = new javax.swing.JLabel();
         semimajorAxisLabel = new javax.swing.JLabel();
@@ -197,17 +198,30 @@ public class KeplerLaws extends javax.swing.JApplet {
         jInternalFrame1.setVisible(true);
 
         visualizingPanel.setBackground(new java.awt.Color(24, 13, 1));
-        visualizingPanel.setPreferredSize(new java.awt.Dimension(800, 300));
+        visualizingPanel.setPreferredSize(new java.awt.Dimension(500, 300));
 
         javax.swing.GroupLayout visualizingPanelLayout = new javax.swing.GroupLayout(visualizingPanel);
         visualizingPanel.setLayout(visualizingPanelLayout);
         visualizingPanelLayout.setHorizontalGroup(
             visualizingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 500, Short.MAX_VALUE)
         );
         visualizingPanelLayout.setVerticalGroup(
             visualizingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 296, Short.MAX_VALUE)
+        );
+
+        GraphPanel.setBackground(new java.awt.Color(253, 203, 153));
+
+        javax.swing.GroupLayout GraphPanelLayout = new javax.swing.GroupLayout(GraphPanel);
+        GraphPanel.setLayout(GraphPanelLayout);
+        GraphPanelLayout.setHorizontalGroup(
+            GraphPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        GraphPanelLayout.setVerticalGroup(
+            GraphPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         controlParameterLabel.setText("변수 조절");
@@ -483,21 +497,25 @@ public class KeplerLaws extends javax.swing.JApplet {
             jInternalFrame1Layout.setHorizontalGroup(
                 jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                 .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                            .addGap(0, 0, Short.MAX_VALUE)
+                            .addComponent(visualizingPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(GraphPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jInternalFrame1Layout.createSequentialGroup()
                             .addComponent(controlParameterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(KeplersLawsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(visualizingPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE))
+                            .addComponent(KeplersLawsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addContainerGap())
             );
             jInternalFrame1Layout.setVerticalGroup(
                 jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jInternalFrame1Layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(visualizingPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(visualizingPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
+                        .addComponent(GraphPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(controlParameterPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -571,6 +589,7 @@ public class KeplerLaws extends javax.swing.JApplet {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel GraphPanel;
     private javax.swing.JTabbedPane KeplersLawsPanel;
     private javax.swing.JCheckBox centerCheckBox;
     private javax.swing.JLabel controlParameterLabel;
