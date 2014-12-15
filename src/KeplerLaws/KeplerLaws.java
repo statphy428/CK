@@ -8,10 +8,12 @@ package KeplerLaws;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.RadialGradientPaint;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
+import java.awt.geom.Point2D;
 
 /**
  *
@@ -83,52 +85,66 @@ public class KeplerLaws extends javax.swing.JApplet {
         {  
          
             super.paintComponent(g);
-            Graphics2D g2 = (Graphics2D)g;
-            g2.setColor(Color.blue);
+            Graphics2D orbit = (Graphics2D)g;
+            Color refColor = new Color(255,255,255);
+            orbit.setColor(refColor);
             Ellipse2D.Double PlanetOrbit;
-            PlanetOrbit = new Ellipse2D.Double(400-(semimajorAxis*(1+eccentricity)),150-semiminorAxis,2*semimajorAxis,2*semiminorAxis);
-            g2.draw(PlanetOrbit);
-            g.setColor(Color.red);
-            g.fillOval(397,147,6,6);
-            g.drawString("sun",397,146); 
+            PlanetOrbit = new Ellipse2D.Double(visualizingPanel.getWidth()/2-(semimajorAxis*(1+eccentricity)),visualizingPanel.getHeight()/2-semiminorAxis,2*semimajorAxis,2*semiminorAxis);
+            orbit.draw(PlanetOrbit);
             
+            Graphics2D sun = (Graphics2D)g;
+            int sunRadius = 15;
+            float[] dist={0.0f,0.8f};
+            Color sunColor = new Color(255,230,103,0);
+            Color[] sunColors={Color.yellow,sunColor};
+            Point2D sunCenter;            
+            RadialGradientPaint sunP; 
+            sunColor = new Color(255,230,103,255);
+            sunColors[0]=sunColor;
+            //sunCenter = new Point2D.Float((float)400,(float)150);
+            sunCenter = new Point2D.Float((float)(visualizingPanel.getWidth()/2),(float)(visualizingPanel.getHeight()/2));
+            sunP = new RadialGradientPaint(sunCenter,1.0f * sunRadius,dist,sunColors);            
+            sun.setPaint(sunP);
+            sun.fillOval(visualizingPanel.getWidth()/2-sunRadius,visualizingPanel.getHeight()/2-sunRadius,sunRadius*2,sunRadius*2);
+                       
             if(focalPointCheckBox.isSelected()){
-                Graphics2D g3 = (Graphics2D)g;
-                g3.setColor(Color.blue);
+                Graphics2D focal = (Graphics2D)g;
+                refColor = new Color(0,0,255);
+                focal.setColor(refColor);
                 Ellipse2D.Double focalPoint ;
-                focalPoint = new Ellipse2D.Double(400-(2*semimajorAxis*eccentricity)-3,147,6,6);                          
-                g3.draw(focalPoint);
-                g3.fill(focalPoint); 
+                focalPoint = new Ellipse2D.Double(visualizingPanel.getWidth()/2-(2*semimajorAxis*eccentricity)-3,visualizingPanel.getHeight()/2-3,6,6);                          
+                focal.draw(focalPoint);
+                focal.fill(focalPoint); 
             }
             if(centerCheckBox.isSelected()){
-                Graphics2D g4 = (Graphics2D)g;
-                g4.setColor(Color.white);
-                Ellipse2D.Double center ;
-                center = new Ellipse2D.Double(400-(semimajorAxis*eccentricity)-3,147,6,6);                          
-                g4.draw(center);
-                g4.fill(center);                
+                Graphics2D center = (Graphics2D)g;
+                center.setColor(Color.white);
+                Ellipse2D.Double OrbitCenter ;
+                OrbitCenter = new Ellipse2D.Double(visualizingPanel.getWidth()/2-(semimajorAxis*eccentricity)-3,visualizingPanel.getHeight()/2-3,6,6);                          
+                center.draw(OrbitCenter);
+                center.fill(OrbitCenter);                
             }
             if(semiminorAxisCheckBox.isSelected()){
-                Graphics2D g5 = (Graphics2D)g;
-                g5.setColor(Color.white);
-                Line2D line1=new Line2D.Double(400-(semimajorAxis*eccentricity),150,400-(semimajorAxis*eccentricity),150-semiminorAxis);
-                g5.draw(line1);
+                Graphics2D semiMinorLine = (Graphics2D)g;
+                semiMinorLine.setColor(Color.white);
+                Line2D line1=new Line2D.Double(visualizingPanel.getWidth()/2-(semimajorAxis*eccentricity),visualizingPanel.getHeight()/2,visualizingPanel.getWidth()/2-(semimajorAxis*eccentricity),visualizingPanel.getHeight()/2-semiminorAxis);
+                semiMinorLine.draw(line1);
                 
             }
             if(semimajorAxisCheckBox.isSelected()){
-                Graphics2D g6 = (Graphics2D)g;
-                g6.setColor(Color.white);
-                Line2D line2=new Line2D.Double(400-(semimajorAxis*eccentricity),150,400+(semimajorAxis*(1-eccentricity)),150);
-                g6.draw(line2);
+                Graphics2D semiMajorLine = (Graphics2D)g;
+                semiMajorLine.setColor(Color.white);
+                Line2D line2=new Line2D.Double(visualizingPanel.getWidth()/2-(semimajorAxis*eccentricity),visualizingPanel.getHeight()/2,visualizingPanel.getWidth()/2+(semimajorAxis*(1-eccentricity)),visualizingPanel.getHeight()/2);
+                semiMajorLine.draw(line2);
                 
             }     
            keplerSystem.ModelDynamics(semimajorAxis,semiminorAxis,eccentricity);
-            Graphics2D g7 = (Graphics2D)g;
-            g7.setColor(Color.yellow);
+            Graphics2D planet = (Graphics2D)g;
+            planet.setColor(Color.yellow);
             Ellipse2D.Double particle ;
-            particle = new Ellipse2D.Double(400+keplerSystem.positionX-3,150+keplerSystem.positionY-3,6,6);                          
-            g7.draw(particle);
-            g7.fill(particle);
+            particle = new Ellipse2D.Double(visualizingPanel.getWidth()/2+keplerSystem.positionX-3,visualizingPanel.getHeight()/2+keplerSystem.positionY-3,6,6);                          
+            planet.draw(particle);
+            planet.fill(particle);
                 
         }
     }
@@ -372,7 +388,7 @@ public class KeplerLaws extends javax.swing.JApplet {
             firstLawEquationPaneLayout.setVerticalGroup(
                 firstLawEquationPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(firstLawEquationPaneLayout.createSequentialGroup()
-                    .addGap(47, 47, 47)
+                    .addGap(35, 35, 35)
                     .addComponent(firstLawEquationLabel)
                     .addGap(23, 23, 23)
                     .addGroup(firstLawEquationPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -381,7 +397,7 @@ public class KeplerLaws extends javax.swing.JApplet {
                         .addComponent(firstLawR2TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(firstLawSumOfR1AndR2TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(firstLawLabel2))
-                    .addContainerGap(52, Short.MAX_VALUE))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             );
             firstLawEquationPane.setLayer(firstLawEquationLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
             firstLawEquationPane.setLayer(firstLawLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -528,6 +544,7 @@ public class KeplerLaws extends javax.swing.JApplet {
             timer.start();
         }else{
             timer.stop();
+            firstLawR1TextField.setText(""+semimajorAxisSlider.getValue());
             //System.out.printf("%f %f\n",keplerSystem.positionX,keplerSystem.positionY);
         }        
     }//GEN-LAST:event_jToggleButton1ActionPerformed
