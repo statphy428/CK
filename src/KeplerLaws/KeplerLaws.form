@@ -78,10 +78,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="controlParameterPanel" pref="245" max="32767" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <Component id="KeplersLawsPanel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="KeplersLawsPanel" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -270,7 +267,7 @@
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="80" green="80" id="gray" palette="1" red="80" type="palette"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="&#xc2dc;&#xc791;"/>
+                <Property name="text" type="java.lang.String" value="Start"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
                 <Property name="actionCommand" type="java.lang.String" value="&#xc815;&#xc9c0;"/>
               </Properties>
@@ -444,12 +441,14 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="firstLawR2TextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="firstLawLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="firstLawR1TextField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="firstLawSumOfR1AndR2TextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="firstLawLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="firstLawR2TextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="firstLawLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="firstLawSumOfR1AndR2TextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="firstLawLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -541,15 +540,33 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="556" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                          <Component id="areaCheckBox" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="462" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="234" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="areaCheckBox" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="175" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JCheckBox" name="areaCheckBox">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="area"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="areaCheckBoxActionPerformed"/>
+                  </Events>
+                </Component>
+              </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="thirdLaw">
               <Properties>

@@ -23,7 +23,7 @@ import java.lang.reflect.InvocationTargetException;
 public class KeplerLaws extends javax.swing.JApplet {
     int semimajorAxis;
     double eccentricity,semiminorAxis;
-    double focalPointDistance1,focalPointDistance2,focalPointDistanceSum;
+    double focalPointDistance1,focalPointDistance2;
     PlanetaryMotion keplerSystem;
     javax.swing.Timer timer;
     /**
@@ -158,10 +158,6 @@ public class KeplerLaws extends javax.swing.JApplet {
             
             focalPointDistance1=Math.sqrt(Math.pow(keplerSystem.positionX+2*semimajorAxis*eccentricity,2)+Math.pow(keplerSystem.positionY,2));
             focalPointDistance2=Math.sqrt(Math.pow(keplerSystem.positionX,2)+Math.pow(keplerSystem.positionY,2));                       
-            focalPointDistanceSum=focalPointDistance1+focalPointDistance2;            
-            focalPointDistance1=Math.round(focalPointDistance1*100)/100.0;
-            focalPointDistance2=Math.round(focalPointDistance2*100)/100.0;
-            focalPointDistanceSum=Math.round(focalPointDistanceSum*100)/100.0;
             
             if(distanceFromFocalPointsCheckBox.isSelected()){
                 Graphics2D focalDistance1 = (Graphics2D)g;
@@ -169,16 +165,24 @@ public class KeplerLaws extends javax.swing.JApplet {
                 focalDistance1.setColor(refColor);
                 Line2D line3=new Line2D.Double(visualizingPanel.getWidth()/2-(2*semimajorAxis*eccentricity),visualizingPanel.getHeight()/2,visualizingPanel.getWidth()/2+keplerSystem.positionX,visualizingPanel.getHeight()/2+keplerSystem.positionY);
                 focalDistance1.draw(line3);
-                firstLawR1TextField.setText(""+focalPointDistance1);   
-                
+                firstLawR1TextField.setText(String.format("%.1f", focalPointDistance1));   
                 Graphics2D focalDistance2 = (Graphics2D)g;
                 refColor = new Color(0,0,255);
                 focalDistance2.setColor(refColor);
                 Line2D line4=new Line2D.Double(visualizingPanel.getWidth()/2,visualizingPanel.getHeight()/2,visualizingPanel.getWidth()/2+keplerSystem.positionX,visualizingPanel.getHeight()/2+keplerSystem.positionY);
                 focalDistance2.draw(line4);
-                firstLawR2TextField.setText(""+focalPointDistance2);   
-                firstLawSumOfR1AndR2TextField.setText(""+(focalPointDistanceSum));   
+                firstLawR2TextField.setText(String.format("%.1f", focalPointDistance2));   
+                firstLawSumOfR1AndR2TextField.setText(String.format("%.1f", focalPointDistance1+focalPointDistance2));   
                 
+            }
+            if(areaCheckBox.isSelected()){
+                for(int i=0;i<100;i++) { 
+                    Graphics2D areaPoint = (Graphics2D)g;
+                    refColor = new Color(0,255,255);
+                    areaPoint.setColor(refColor);
+                    Line2D line5=new Line2D.Double(visualizingPanel.getWidth()/2,visualizingPanel.getHeight()/2,visualizingPanel.getWidth()/2+keplerSystem.arrowPositionX[i],visualizingPanel.getHeight()/2+keplerSystem.arrowPositionY[i]);
+                    areaPoint.draw(line5);
+                }
             }
                 
         }
@@ -220,6 +224,7 @@ public class KeplerLaws extends javax.swing.JApplet {
         firstLawR2TextField = new javax.swing.JTextField();
         firstLawSumOfR1AndR2TextField = new javax.swing.JTextField();
         secondLaw = new javax.swing.JPanel();
+        areaCheckBox = new javax.swing.JCheckBox();
         thirdLaw = new javax.swing.JPanel();
 
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -292,7 +297,7 @@ public class KeplerLaws extends javax.swing.JApplet {
         });
 
         jToggleButton1.setBackground(java.awt.Color.gray);
-        jToggleButton1.setText("시작");
+        jToggleButton1.setText("Start");
         jToggleButton1.setToolTipText("");
         jToggleButton1.setActionCommand("정지");
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -447,12 +452,13 @@ public class KeplerLaws extends javax.swing.JApplet {
             firstLawEquationPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, firstLawEquationPaneLayout.createSequentialGroup()
                 .addGap(95, 95, 95)
-                .addGroup(firstLawEquationPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(firstLawR2TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(firstLawLabel2)
+                .addGroup(firstLawEquationPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(firstLawR1TextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(firstLawSumOfR1AndR2TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(firstLawLabel1))
+                    .addGroup(firstLawEquationPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(firstLawR2TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(firstLawLabel2)
+                        .addComponent(firstLawSumOfR1AndR2TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(firstLawLabel1)))
                 .addContainerGap())
         );
         firstLawEquationPane.setLayer(firstLawLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -512,15 +518,28 @@ public class KeplerLaws extends javax.swing.JApplet {
         secondLaw.setMinimumSize(new java.awt.Dimension(558, 236));
         secondLaw.setPreferredSize(new java.awt.Dimension(558, 236));
 
+        areaCheckBox.setText("area");
+        areaCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                areaCheckBoxActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout secondLawLayout = new javax.swing.GroupLayout(secondLaw);
         secondLaw.setLayout(secondLawLayout);
         secondLawLayout.setHorizontalGroup(
             secondLawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 556, Short.MAX_VALUE)
+            .addGroup(secondLawLayout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(areaCheckBox)
+                .addContainerGap(462, Short.MAX_VALUE))
         );
         secondLawLayout.setVerticalGroup(
             secondLawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 234, Short.MAX_VALUE)
+            .addGroup(secondLawLayout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(areaCheckBox)
+                .addContainerGap(175, Short.MAX_VALUE))
         );
 
         KeplersLawsPanel.addTab("케플러 제 2법칙", secondLaw);
@@ -565,9 +584,7 @@ public class KeplerLaws extends javax.swing.JApplet {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(controlParameterPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
-                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                        .addComponent(KeplersLawsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)))
+                    .addComponent(KeplersLawsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -629,8 +646,10 @@ public class KeplerLaws extends javax.swing.JApplet {
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         if(jToggleButton1.isSelected()) {
+            jToggleButton1.setText("Pause");
             timer.start();
         }else{
+            jToggleButton1.setText("Start");
             timer.stop();
       //      firstLawR1TextField.setText(""+semimajorAxisSlider.getValue());
             //System.out.printf("%f %f\n",keplerSystem.positionX,keplerSystem.positionY);
@@ -676,9 +695,15 @@ public class KeplerLaws extends javax.swing.JApplet {
         visualizingPanel.repaint();
     }//GEN-LAST:event_semimajorAxisCheckBoxActionPerformed
 
+    private void areaCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_areaCheckBoxActionPerformed
+        // TODO add your handling code here:
+        visualizingPanel.repaint();
+    }//GEN-LAST:event_areaCheckBoxActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane KeplersLawsPanel;
+    private javax.swing.JCheckBox areaCheckBox;
     private javax.swing.JCheckBox centerCheckBox;
     private javax.swing.JLabel controlParameterLabel;
     private javax.swing.JPanel controlParameterPanel;
@@ -717,31 +742,45 @@ class PlanetaryMotion{
     double semiMinorAxis,eccentricity;
     double positionR,positionTheta;
     double positionX,positionY;
-    double startTime,dt;
+    int dt, dtRate, dtTime ;
+    double arrowPositionX[], arrowPositionY[];
    
     //initial conditition
     PlanetaryMotion(int semiMajor,double semiMinor,double ecc){
         eccentricity = ecc ;
         semiMajorAxis = semiMajor ;
         semiMinorAxis = semiMinor;
-        startTime = 0;
-        dt = 10;
+        dt = 1;
+        dtRate = 20;
+        dtTime = 0;
         positionR=semiMajorAxis*(1-eccentricity);
         positionTheta=0 ;
         positionX = positionR*Math.cos(positionTheta);
         positionY = -positionR*Math.sin(positionTheta);
+        
+        arrowPositionX = new double[100] ;
+        arrowPositionY = new double[100] ;
+        for(int i=0;i<100;i++) { 
+            arrowPositionX[i]=0;
+            arrowPositionY[i]=0;            
+        }
+        
+        
     }
     public void ModelDynamics(int semiMajor,double semiMinor,double ecc){
+        dtTime += dt ;
         eccentricity = ecc ;
         semiMajorAxis = semiMajor ;
         semiMinorAxis = semiMinor;
-        startTime += dt ;
-        positionTheta += dt/positionR/positionR ; //Angular momentum conservation
+        positionTheta += (dt*dtRate)/positionR/positionR ; //Angular momentum conservation
         if(positionTheta>2*Math.PI) positionTheta -= 2*Math.PI ; //constraint 0<=theta < 2* pi
         positionR = (semiMajorAxis*(1-eccentricity*eccentricity)/(1+eccentricity*Math.cos(positionTheta))) ;//Orbit equation
         //From polar to Cartesian coordinates
         positionX = positionR*Math.cos(positionTheta);
         positionY = -positionR*Math.sin(positionTheta);      
+        
+        arrowPositionX[dtTime%100]=positionX;
+        arrowPositionY[dtTime%100]=positionY;  
         
     }
     
