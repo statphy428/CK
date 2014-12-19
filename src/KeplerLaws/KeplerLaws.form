@@ -39,7 +39,7 @@
   <SubComponents>
     <Container class="javax.swing.JInternalFrame" name="jInternalFrame1">
       <Properties>
-        <Property name="title" type="java.lang.String" value="&#xcf00;&#xd50c;&#xb7ec;&#xc758; &#xbc95;&#xce59;"/>
+        <Property name="title" type="java.lang.String" value="Kepler&apos;s Law"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[800, 600]"/>
         </Property>
@@ -78,7 +78,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="controlParameterPanel" pref="245" max="32767" attributes="0"/>
-                      <Component id="KeplersLawsPanel" min="-2" max="-2" attributes="0"/>
+                      <Component id="KeplersLawsPanel" pref="245" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -129,44 +129,44 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="controlParameterLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="44" pref="44" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="semimajorAxisLabel" min="-2" max="-2" attributes="0"/>
                                           <Component id="eccentricityLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" attributes="0">
-                                              <Component id="semimajorAxisTextField" min="-2" pref="31" max="-2" attributes="0"/>
-                                              <EmptySpace max="32767" attributes="0"/>
+                                              <Component id="semimajorAxisTextField" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                                               <Component id="semimajorAxisUnitLabel" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <Group type="102" attributes="0">
-                                              <Component id="eccentricityTextField" min="-2" pref="38" max="-2" attributes="0"/>
-                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                          </Group>
+                                          <Component id="eccentricityTextField" min="-2" pref="38" max="-2" attributes="0"/>
                                       </Group>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                                   <Component id="eccentricitySlider" pref="0" max="32767" attributes="0"/>
                                   <Component id="semimajorAxisSlider" alignment="1" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="controlParameterLabel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                      <Component id="jToggleButton1" min="-2" pref="114" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="startPauseToggleButton" min="-2" pref="79" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="ResetButton" min="-2" pref="80" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -192,8 +192,11 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="eccentricitySlider" min="-2" pref="31" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jToggleButton1" min="-2" pref="41" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="startPauseToggleButton" pref="41" max="32767" attributes="0"/>
+                          <Component id="ResetButton" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -201,16 +204,20 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="controlParameterLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="&#xbcc0;&#xc218; &#xc870;&#xc808;"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Ubuntu" size="15" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Orbit settings"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="semimajorAxisLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="&#xc7a5;&#xbc18;&#xacbd;"/>
+                <Property name="text" type="java.lang.String" value="semimajor axis"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="semimajorAxisTextField">
               <Properties>
+                <Property name="text" type="java.lang.String" value="100"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="&#xd14d;&#xc2a4;&#xd2b8; &#xcee4;&#xc11c;"/>
                 </Property>
@@ -231,7 +238,7 @@
                 </Property>
                 <Property name="maximum" type="int" value="130"/>
                 <Property name="minimum" type="int" value="1"/>
-                <Property name="value" type="int" value="25"/>
+                <Property name="value" type="int" value="100"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="&#xae30;&#xbcf8; &#xcee4;&#xc11c;"/>
                 </Property>
@@ -246,10 +253,13 @@
             </Component>
             <Component class="javax.swing.JLabel" name="eccentricityLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="&#xc774;&#xc2ec;&#xb960;"/>
+                <Property name="text" type="java.lang.String" value="eccentricity"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="eccentricityTextField">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="0.35"/>
+              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="eccentricityTextFieldActionPerformed"/>
               </Events>
@@ -257,12 +267,13 @@
             <Component class="javax.swing.JSlider" name="eccentricitySlider">
               <Properties>
                 <Property name="maximum" type="int" value="70"/>
+                <Property name="value" type="int" value="35"/>
               </Properties>
               <Events>
                 <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="eccentricitySliderStateChanged"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JToggleButton" name="jToggleButton1">
+            <Component class="javax.swing.JToggleButton" name="startPauseToggleButton">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="80" green="80" id="gray" palette="1" red="80" type="palette"/>
@@ -272,7 +283,15 @@
                 <Property name="actionCommand" type="java.lang.String" value="&#xc815;&#xc9c0;"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="startPauseToggleButtonActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="ResetButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Reset"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ResetButtonActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -312,8 +331,8 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="&#xcf00;&#xd50c;&#xb7ec; &#xc81c; 1&#xbc95;&#xce59;">
-                    <Property name="tabTitle" type="java.lang.String" value="&#xcf00;&#xd50c;&#xb7ec; &#xc81c; 1&#xbc95;&#xce59;"/>
+                  <JTabbedPaneConstraints tabName="Kepler&apos;s 1st Law">
+                    <Property name="tabTitle" type="java.lang.String" value="Kepler&apos;s 1st Law"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -322,49 +341,55 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="focalPointCheckBox" linkSize="3" min="-2" pref="155" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="distanceFromFocalPointsCheckBox" linkSize="3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="centerCheckBox" linkSize="3" alignment="0" min="-2" pref="163" max="-2" attributes="0"/>
-                                      <Component id="semiminorAxisCheckBox" linkSize="3" alignment="0" min="-2" pref="163" max="-2" attributes="0"/>
-                                      <Component id="semimajorAxisCheckBox" linkSize="3" alignment="0" min="-2" pref="163" max="-2" attributes="0"/>
-                                  </Group>
+                              <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="firstLawEquationPane" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="distanceFromFocalPointsCheckBox" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="centerCheckBox" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="focalPointCheckBox" alignment="0" pref="169" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="semimajorAxisCheckBox" min="-2" pref="177" max="-2" attributes="0"/>
+                                      <Component id="semiminorAxisCheckBox" min="-2" pref="177" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
                               </Group>
                           </Group>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="firstLawEquationPane" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="28" pref="28" max="-2" attributes="0"/>
-                                  <Component id="focalPointCheckBox" max="32767" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="centerCheckBox" max="32767" attributes="0"/>
-                                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                                  <Component id="semiminorAxisCheckBox" max="32767" attributes="0"/>
-                                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                                  <Component id="semimajorAxisCheckBox" max="32767" attributes="0"/>
-                                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                                  <Component id="distanceFromFocalPointsCheckBox" max="32767" attributes="0"/>
-                              </Group>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="focalPointCheckBox" linkSize="6" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="semiminorAxisCheckBox" linkSize="6" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="centerCheckBox" linkSize="6" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="semimajorAxisCheckBox" linkSize="6" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                          <Component id="distanceFromFocalPointsCheckBox" linkSize="6" min="-2" pref="33" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                          <Component id="firstLawEquationPane" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -372,7 +397,8 @@
               <SubComponents>
                 <Component class="javax.swing.JCheckBox" name="focalPointCheckBox">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="&#xcd08;&#xc810; &#xbcf4;&#xae30;"/>
+                    <Property name="text" type="java.lang.String" value="show empty focus"/>
+                    <Property name="actionCommand" type="java.lang.String" value="Show "/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="focalPointCheckBoxActionPerformed"/>
@@ -380,7 +406,7 @@
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="centerCheckBox">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="&#xc911;&#xc2ec; &#xbcf4;&#xae30;"/>
+                    <Property name="text" type="java.lang.String" value="show center"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="centerCheckBoxActionPerformed"/>
@@ -388,7 +414,7 @@
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="semiminorAxisCheckBox">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="&#xb2e8;&#xbc18;&#xacbd; &#xbcf4;&#xae30;"/>
+                    <Property name="text" type="java.lang.String" value="show semiminor axis"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="semiminorAxisCheckBoxActionPerformed"/>
@@ -396,7 +422,7 @@
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="semimajorAxisCheckBox">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="&#xc7a5;&#xbc18;&#xacbd; &#xbcf4;&#xae30;"/>
+                    <Property name="text" type="java.lang.String" value="show semimajor axis"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="semimajorAxisCheckBoxActionPerformed"/>
@@ -404,7 +430,7 @@
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="distanceFromFocalPointsCheckBox">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="&#xcd08;&#xc810;&#xc73c;&#xb85c;&#xbd80;&#xd130;&#xc758; &#xac70;&#xb9ac;"/>
+                    <Property name="text" type="java.lang.String" value="show radial lines"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="distanceFromFocalPointsCheckBoxActionPerformed"/>
@@ -422,35 +448,51 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                              <Component id="firstLawR1TextField" min="-2" pref="70" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="firstLawLabel1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                              <Component id="firstLawR2TextField" min="-2" pref="65" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="firstLawLabel2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="firstLawSumOfR1AndR2TextField" min="-2" pref="56" max="-2" attributes="0"/>
-                              <EmptySpace pref="134" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="firstLawR1TextField" linkSize="5" min="-2" pref="70" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                                      <Component id="firstLawLabel1" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="firstLawR2TextField" linkSize="5" min="-2" pref="65" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="firstLawLabel2" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                                      <Component id="firstLawSumOfR1AndR2TextField" linkSize="5" min="-2" pref="56" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace pref="17" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="firstLawR1TextField" alignment="0" max="32767" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="firstLawR2TextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="firstLawLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="firstLawSumOfR1AndR2TextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="firstLawLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="firstLawR1TextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="firstLawR2TextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="firstLawSumOfR1AndR2TextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="firstLawLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="firstLawLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -484,6 +526,9 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="firstLawR2TextField">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Ubuntu" size="15" style="0"/>
+                        </Property>
                         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[70, 30]"/>
                         </Property>
@@ -494,6 +539,9 @@
                           <Dimension value="[70, 30]"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="firstLawR2TextFieldActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JTextField" name="firstLawSumOfR1AndR2TextField">
                       <Properties>
@@ -508,8 +556,40 @@
                         </Property>
                       </Properties>
                     </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel2">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Ubuntu" size="15" style="1"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="radial line 1        +        radial line 2       =    2    x    semimajor axis"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel3">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="(AU)"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel4">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="(AU)"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel5">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="(AU)"/>
+                      </Properties>
+                    </Component>
                   </SubComponents>
                 </Container>
+                <Component class="javax.swing.JLabel" name="jLabel1">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Ubuntu" size="15" style="1"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="The orbit of a planet is an ellipse with the Sun at one of the two foci."/>
+                    <Property name="toolTipText" type="java.lang.String" value=""/>
+                  </Properties>
+                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="secondLaw">
@@ -531,8 +611,8 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="&#xcf00;&#xd50c;&#xb7ec; &#xc81c; 2&#xbc95;&#xce59;">
-                    <Property name="tabTitle" type="java.lang.String" value="&#xcf00;&#xd50c;&#xb7ec; &#xc81c; 2&#xbc95;&#xce59;"/>
+                  <JTabbedPaneConstraints tabName="Kepler&apos;s 2nd Law">
+                    <Property name="tabTitle" type="java.lang.String" value="Kepler&apos;s 2nd Law"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -540,31 +620,62 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                          <Component id="areaCheckBox" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="462" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                                      <Component id="sweepingCheckBox" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace pref="49" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                          <Component id="areaCheckBox" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="175" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="sweepingCheckBox" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="126" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JCheckBox" name="areaCheckBox">
+                <Component class="javax.swing.JCheckBox" name="sweepingCheckBox">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="area"/>
+                    <Property name="text" type="java.lang.String" value="start sweeping"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="areaCheckBoxActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sweepingCheckBoxActionPerformed"/>
                   </Events>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel6">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Ubuntu" size="15" style="1"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="A line segment joining a planet and the Sun sweeps out equal areas"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel7">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Ubuntu" size="15" style="1"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value=" during equal intervals of time."/>
+                  </Properties>
                 </Component>
               </SubComponents>
             </Container>
@@ -587,8 +698,8 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="&#xcf00;&#xd50c;&#xb7ec; &#xc81c; 3&#xbc95;&#xce59;">
-                    <Property name="tabTitle" type="java.lang.String" value="&#xcf00;&#xd50c;&#xb7ec; &#xc81c; 3&#xbc95;&#xce59;"/>
+                  <JTabbedPaneConstraints tabName="Kepler&apos;s 3rd Law">
+                    <Property name="tabTitle" type="java.lang.String" value="Kepler&apos;s 3rd Law"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
