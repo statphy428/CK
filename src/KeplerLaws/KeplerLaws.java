@@ -38,6 +38,7 @@ public class KeplerLaws extends javax.swing.JApplet {
             }while(keplerSystem.positionTheta1-startTheta<2*Math.PI);
             periodStep =  keplerSystem.dtTime-startDt;
             System.out.format("%d\n", periodStep);
+            
     }
         
     public void init() {
