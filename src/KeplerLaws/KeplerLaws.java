@@ -27,6 +27,7 @@ public class KeplerLaws extends javax.swing.JApplet {
     int periodStep;
     PlanetaryMotion keplerSystem;
     javax.swing.Timer timer;
+    private Object event;
     /**
      * Initializes the applet KeplerLaws
      */
@@ -203,6 +204,7 @@ public class KeplerLaws extends javax.swing.JApplet {
                     
                 }
             }
+            
                 
         }
     }
@@ -217,7 +219,6 @@ public class KeplerLaws extends javax.swing.JApplet {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
         jInternalFrame1 = new javax.swing.JInternalFrame();
         visualizingPanel = new displayPanel();
         controlParameterPanel = new javax.swing.JPanel();
@@ -640,11 +641,14 @@ public class KeplerLaws extends javax.swing.JApplet {
         jLabel7.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel7.setText(" during equal intervals of time.");
 
+        jTextField1.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
+
+        jTextField2.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
 
         jLabel8.setText("A fractional sweep size of ");
 
@@ -662,25 +666,24 @@ public class KeplerLaws extends javax.swing.JApplet {
                         .addGap(26, 26, 26)
                         .addGroup(secondLawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
-                            .addComponent(sweepingCheckBox)))
+                            .addComponent(sweepingCheckBox)
+                            .addGroup(secondLawLayout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addGroup(secondLawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(secondLawLayout.createSequentialGroup()
+                                        .addComponent(jLabel8)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(secondLawLayout.createSequentialGroup()
+                                        .addComponent(jLabel9)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel10))))))
                     .addGroup(secondLawLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel7)))
                 .addContainerGap(49, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, secondLawLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(secondLawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(secondLawLayout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(52, 52, 52)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(secondLawLayout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(2, 2, 2)
-                        .addComponent(jLabel10)))
-                .addGap(22, 22, 22))
         );
         secondLawLayout.setVerticalGroup(
             secondLawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -689,18 +692,18 @@ public class KeplerLaws extends javax.swing.JApplet {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
-                .addGap(30, 30, 30)
+                .addGap(28, 28, 28)
                 .addComponent(sweepingCheckBox)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(secondLawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addGap(19, 19, 19)
                 .addGroup(secondLawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(secondLawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
-                .addGap(38, 38, 38))
+                .addContainerGap())
         );
 
         KeplersLawsPanel.addTab("Kepler's 2nd Law", secondLaw);
@@ -723,18 +726,21 @@ public class KeplerLaws extends javax.swing.JApplet {
             }
         });
 
+        PeriodTextField.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         PeriodTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PeriodTextFieldActionPerformed(evt);
             }
         });
 
+        SemiMajorAxisjTextField.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         SemiMajorAxisjTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SemiMajorAxisjTextFieldActionPerformed(evt);
             }
         });
 
+        RatioTextField.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         RatioTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RatioTextFieldActionPerformed(evt);
@@ -762,34 +768,35 @@ public class KeplerLaws extends javax.swing.JApplet {
                         .addComponent(jLabel11))
                     .addGroup(thirdLawLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel12)))
-                .addContainerGap(26, Short.MAX_VALUE))
-            .addGroup(thirdLawLayout.createSequentialGroup()
-                .addGroup(thirdLawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel12))
+                    .addGroup(thirdLawLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(PlanetComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(thirdLawLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(PeriodTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(thirdLawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(thirdLawLayout.createSequentialGroup()
+                                .addGap(38, 38, 38)
+                                .addComponent(jLabel15))
+                            .addGroup(thirdLawLayout.createSequentialGroup()
+                                .addGap(3, 3, 3)
+                                .addComponent(jLabel13)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SemiMajorAxisjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(thirdLawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(thirdLawLayout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(jLabel18))
+                            .addGroup(thirdLawLayout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addComponent(jLabel17)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(RatioTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(thirdLawLayout.createSequentialGroup()
                         .addGap(23, 23, 23)
-                        .addComponent(PlanetComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(jLabel14))
-                    .addGroup(thirdLawLayout.createSequentialGroup()
-                        .addGap(160, 160, 160)
-                        .addGroup(thirdLawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel18)
-                            .addGroup(thirdLawLayout.createSequentialGroup()
-                                .addComponent(PeriodTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(1, 1, 1)
-                                .addGroup(thirdLawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel13)
-                                    .addGroup(thirdLawLayout.createSequentialGroup()
-                                        .addGap(29, 29, 29)
-                                        .addComponent(jLabel15)))))
-                        .addGap(18, 18, 18)
-                        .addGroup(thirdLawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(SemiMajorAxisjTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-                            .addComponent(RatioTextField))
-                        .addGap(2, 2, 2)
-                        .addComponent(jLabel17)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(jLabel14)))
+                .addGap(43, 43, 43))
         );
         thirdLawLayout.setVerticalGroup(
             thirdLawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -798,29 +805,25 @@ public class KeplerLaws extends javax.swing.JApplet {
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel12)
-                .addGap(34, 34, 34)
-                .addGroup(thirdLawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(PlanetComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(thirdLawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(thirdLawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(thirdLawLayout.createSequentialGroup()
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(PeriodTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jLabel17))
-                    .addGroup(thirdLawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(thirdLawLayout.createSequentialGroup()
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(thirdLawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel15)
-                                .addComponent(SemiMajorAxisjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addComponent(jLabel13)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(thirdLawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(26, 26, 26)
+                .addComponent(PlanetComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel14)
+                .addGap(18, 18, 18)
+                .addGroup(thirdLawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(PeriodTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15)
+                    .addComponent(SemiMajorAxisjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel18)
                     .addComponent(RatioTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5))
+                .addContainerGap(26, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, thirdLawLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(thirdLawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel13)
+                    .addGroup(thirdLawLayout.createSequentialGroup()
+                        .addComponent(jLabel17)
+                        .addGap(49, 49, 49))))
         );
 
         KeplersLawsPanel.addTab("Kepler's 3rd Law", thirdLaw);
@@ -856,12 +859,13 @@ public class KeplerLaws extends javax.swing.JApplet {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -1003,7 +1007,56 @@ public class KeplerLaws extends javax.swing.JApplet {
 
     private void PlanetComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlanetComboBoxActionPerformed
         // TODO add your handling code here:
-
+        String selectedValue = PlanetComboBox.getSelectedItem().toString();
+        
+        switch (selectedValue) {
+            case "Mercury":
+                PeriodTextField.setText(String.format("0.241"));
+                SemiMajorAxisjTextField.setText(String.format("0.387"));
+                RatioTextField.setText(String.format("0.0580"));
+                break;
+            case "Venus":
+                PeriodTextField.setText(String.format("0.615"));
+                SemiMajorAxisjTextField.setText(String.format("0.723"));
+                RatioTextField.setText(String.format("0.378"));
+                break;
+            case "Earth":
+                PeriodTextField.setText(String.format("1.00"));
+                SemiMajorAxisjTextField.setText(String.format("1.00"));
+                RatioTextField.setText(String.format("1.00"));
+                break;
+            case "Mars":
+                PeriodTextField.setText(String.format("1.88"));
+                SemiMajorAxisjTextField.setText(String.format("1.52"));
+                RatioTextField.setText(String.format("3.54"));
+                break;               
+            case "Jupiter":
+                PeriodTextField.setText(String.format("11.9"));
+                SemiMajorAxisjTextField.setText(String.format("5.20"));
+                RatioTextField.setText(String.format("141"));
+                break;
+            case "Saturn":
+                PeriodTextField.setText(String.format("29.5"));
+                SemiMajorAxisjTextField.setText(String.format("9.54"));
+                RatioTextField.setText(String.format("868"));
+                break;
+            case "Uranus":
+                PeriodTextField.setText(String.format("84.0"));
+                SemiMajorAxisjTextField.setText(String.format("19.2"));
+                RatioTextField.setText(String.format("7060"));
+                break;
+            case "Neptune":
+                PeriodTextField.setText(String.format("165"));
+                SemiMajorAxisjTextField.setText(String.format("30.1"));
+                RatioTextField.setText(String.format("27200"));
+                break;
+            case "Pluto":
+                PeriodTextField.setText(String.format("248"));
+                SemiMajorAxisjTextField.setText(String.format("39.4"));
+                RatioTextField.setText(String.format("61300"));
+                break;
+                
+        }
     }//GEN-LAST:event_PlanetComboBoxActionPerformed
 
 
@@ -1014,7 +1067,6 @@ public class KeplerLaws extends javax.swing.JApplet {
     private javax.swing.JTextField RatioTextField;
     private javax.swing.JButton ResetButton;
     private javax.swing.JTextField SemiMajorAxisjTextField;
-    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JCheckBox centerCheckBox;
     private javax.swing.JLabel controlParameterLabel;
     private javax.swing.JPanel controlParameterPanel;
