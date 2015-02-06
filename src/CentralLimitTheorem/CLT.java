@@ -82,6 +82,7 @@ public class CLT extends javax.swing.JApplet {
         setMinimumSize(new java.awt.Dimension(800, 600));
         setPreferredSize(new java.awt.Dimension(800, 600));
 
+        jInternalFrame1.setTitle("Central Limit Theorem");
         jInternalFrame1.setVisible(true);
 
         jPanel1.setBackground(new java.awt.Color(246, 215, 184));
