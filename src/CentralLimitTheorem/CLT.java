@@ -5,32 +5,28 @@
  */
 package CentralLimitTheorem;
 
-import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Panel;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.Line2D;
 import java.lang.reflect.InvocationTargetException;
+import java.math.BigDecimal;
 import java.math.BigInteger;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
-import static jdk.nashorn.internal.runtime.regexp.joni.Syntax.Java;
+import java.math.RoundingMode;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.axis.NumberTickUnit;
-import static org.jfree.chart.demo.PieChartDemo1.createDemoPanel;
-import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.renderer.category.BarRenderer;
-import org.jfree.chart.renderer.category.CategoryItemRenderer;
-import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.data.function.Function2D;
 import org.jfree.data.function.NormalDistributionFunction2D;
 import org.jfree.data.general.DatasetUtilities;
 import org.jfree.data.xy.XYDataset;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
 
 /**
  *
@@ -74,12 +70,15 @@ public class CLT extends javax.swing.JApplet {
 
         /* Create and display the applet */
         try {
-            java.awt.EventQueue.invokeAndWait(() -> {
-                initComponents();
-                timer = new javax.swing.Timer(1,new CLT.aListener());  
-                CLTSystem = new CLTMotion(sampleSize,probability);
-                timer.stop();
-                
+            java.awt.EventQueue.invokeAndWait(new Runnable() {
+
+           
+                public void run() {
+                    initComponents();
+                    //timer = new javax.swing.Timer(1,new CLT.aListener());
+                    CLTSystem = new CLTMotion(sampleSize,probability);
+                    //timer.stop();
+                }
             });
         } catch (InterruptedException | InvocationTargetException ex) {
         }
@@ -88,36 +87,64 @@ public class CLT extends javax.swing.JApplet {
         
     public class aListener implements ActionListener 
     {
-            @Override
+          
             public void actionPerformed(ActionEvent e) {
                 
-                visualizingPanel.repaint();                
+//                visualizingPanel.removeAll();       
+//                visualizingPanel.repaint();  
                 
             }
     };
+   
     public class displayPanel extends javax.swing.JPanel{                
         displayPanel(){
             super();
         }
-        @Override
+      
         public void paintComponent(Graphics g)
         {  
             int width = visualizingPanel.getWidth();
             int height = visualizingPanel.getHeight();
-
+            super.paintComponent(g);
+            
             CLTSystem.ModelDynamics(sampleSize, probability);
+            System.out.print("error\n");
+            XYSeries series1 = new XYSeries("binomial");
+            for(int i=0;i<=sampleSize;i++) { 
+                series1.add(i,CLTSystem.prob_k[i]);
+            }
+            XYSeries series2 = new XYSeries("normal");
+            for(int i=0;i<=1000;i++){
+                series2.add((double)(sampleSize*i)/1000.,CLTSystem.prob_x[i]);
+            }
+            XYSeriesCollection dataset = new XYSeriesCollection();
+            dataset.addSeries(series1);
+            dataset.addSeries(series2);
+            JFreeChart chart = ChartFactory.createXYLineChart("","n","p(n)",dataset,PlotOrientation.VERTICAL,true,true,false);
+            ChartPanel panel = new ChartPanel(chart);
+            panel.setSize(visualizingPanel.getWidth(),visualizingPanel.getHeight());
+            panel.setVisible(true);            
+             
+            visualizingPanel.add(panel);
+           visualizingPanel.validate();
+            //visualizingPanel.repaint();
             
-            
-                Function2D normal = new NormalDistributionFunction2D(sampleSize*probability,sampleSize*probability*(1-probability));
-                XYDataset dataset = DatasetUtilities.sampleFunction2D(normal, 0, sampleSize, 100, "Normal");
-                JFreeChart chart = ChartFactory.createXYLineChart("","n","p(n)",dataset,PlotOrientation.VERTICAL,true,true,false);
-                ChartPanel panel = new ChartPanel(chart);
-                panel.setSize(visualizingPanel.getWidth(),visualizingPanel.getHeight());
-                panel.setVisible(true);
-                visualizingPanel.add(panel);
-                visualizingPanel.validate();
-                visualizingPanel.repaint();
-     
+            /*
+            Function2D normal = new NormalDistributionFunction2D(sampleSize*probability,sampleSize*probability*(1-probability));
+            XYDataset dataset = DatasetUtilities.sampleFunction2D(normal, 0, sampleSize, 100, "Normal");
+            JFreeChart chart = ChartFactory.createXYLineChart("","n","p(n)",dataset,PlotOrientation.VERTICAL,true,true,false);
+            ChartPanel panel = new ChartPanel(chart);
+            panel.setSize(visualizingPanel.getWidth(),visualizingPanel.getHeight());
+            panel.setVisible(true);
+            visualizingPanel.add(panel);
+            visualizingPanel.validate();
+            visualizingPanel.repaint();
+            */
+           // if(timer.isRunning()){
+                
+          //  }else{
+           //     return;
+           // }
         }
     }
     /**
@@ -191,6 +218,8 @@ public class CLT extends javax.swing.JApplet {
             }
         });
 
+        pSlider.setMaximum(99);
+        pSlider.setMinimum(1);
         pSlider.setMaximumSize(new java.awt.Dimension(160, 30));
         pSlider.setMinimumSize(new java.awt.Dimension(160, 30));
         pSlider.setPreferredSize(new java.awt.Dimension(160, 30));
@@ -265,6 +294,7 @@ public class CLT extends javax.swing.JApplet {
                 .addGap(21, 21, 21))
         );
 
+        explanationPanel.setBackground(new java.awt.Color(254, 254, 254));
         explanationPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         binomialLabel.setText("Binomial distribution");
@@ -326,6 +356,7 @@ public class CLT extends javax.swing.JApplet {
                 .addGap(24, 24, 24))
         );
 
+        jPanel1.setBackground(new java.awt.Color(254, 254, 254));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel9.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
@@ -434,7 +465,9 @@ public class CLT extends javax.swing.JApplet {
     private void pSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_pSliderStateChanged
         // TODO add your handling code here:
         pTextField.setText(""+(pSlider.getValue())/100.);
-        probability= (pSlider.getValue())/100.;
+        probability= (pSlider.getValue())/100.; 
+        CLTSystem = new CLTMotion(sampleSize,probability);
+        CLTSystem.ModelDynamics(sampleSize, probability);
         visualizingPanel.repaint();
     }//GEN-LAST:event_pSliderStateChanged
 
@@ -459,6 +492,8 @@ public class CLT extends javax.swing.JApplet {
         // TODO add your handling code here:
         NTextField.setText(""+NSlider.getValue());
         sampleSize= NSlider.getValue();
+        CLTSystem = new CLTMotion(sampleSize,probability);
+        CLTSystem.ModelDynamics(sampleSize, probability);
         visualizingPanel.repaint();
     }//GEN-LAST:event_NSliderStateChanged
 
@@ -489,40 +524,61 @@ public class CLT extends javax.swing.JApplet {
     private javax.swing.JPanel visualizingPanel;
     // End of variables declaration//GEN-END:variables
 }
-
 class CLTMotion{
     int sampleSize;
     double probability;
-    double prob_k[];
+    BigDecimal prob_k[];
+    BigDecimal prob_x[];
+    
     //initial conditition
     CLTMotion(int size,double prob){
         sampleSize = size;
         probability = prob;
-        prob_k = new double [101] ;
-        for(int i=0;i<101;i++){
-               prob_k[i]=0;
-        }
+        prob_k = new BigDecimal [101] ;
+        prob_x = new BigDecimal [1001] ;
+        
     }
-    int factorial ( int input )
+ 
+    static BigInteger factorial(int n)
     {
-        int x, fact = 1;
-        for ( x = input; x > 1; x--)
-        fact *= x;
+		BigInteger res = BigInteger.ONE;
 
-        return fact;
-
+		for (int i = n; i>1; i--)
+		{
+			res = res.multiply(BigInteger.valueOf(i));
+		}
+		return(res);
     }
     public void ModelDynamics(int size,double prob){        
         sampleSize = size;
         probability = prob;
-               
-        for(int i=0;i<=sampleSize;i++){
-         //   prob_k[i]=factorial(sampleSize)/factorial(i)/factorial(sampleSize-i)*Java.lang.Math.pow(probability,double i)*Java.lang.Math.pow(1-probability,double sampleSize-i);
-                    
+        double m = sampleSize*probability;
+        double variance_2 = sampleSize*probability*(1.-probability);
+        for(int i=0;i<=1000;i++){
+            double x = (double)i*((double)sampleSize/1000.);
+            double exponent = Math.pow(x-m,2.0)/(2*variance_2);
+            double scale = Math.exp((-1.)*exponent);
+            double coeff = Math.sqrt(variance_2*2.*Math.PI);
+            BigDecimal coeffBD = new BigDecimal(coeff);
+            BigDecimal scaleBD = new BigDecimal(scale);            
+            prob_x[i]=scaleBD.divide(coeffBD, 40, RoundingMode.HALF_UP);
+            
         }
-     
+        
+        for(int i=0;i<=sampleSize;i++){
+            BigInteger ntF = factorial(sampleSize);
+            BigInteger denom = factorial(i).multiply(factorial(sampleSize-i));
+            BigDecimal ntFBD = new BigDecimal(ntF);
+            BigDecimal denomBD = new BigDecimal(denom);
+            BigDecimal quotient = ntFBD.divide(denomBD, 40, RoundingMode.HALF_UP);
+            BigDecimal restBD = BigDecimal.valueOf(Math.pow(probability,(double)i) * Math.pow(1.-probability,(double)sampleSize-i));
+            prob_k[i]=quotient.multiply(restBD);
+            System.out.format("[%d]\t%.20f\n", i,prob_k[i]);
+        }
+        
+            
     }
-    
-    
+     
 }
+ 
 
